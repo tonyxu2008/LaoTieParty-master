@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/rople_logo" />
+
+    <Button
+        android:id="@+id/button_Show"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:text="形象展示" />
+
+    <Button
+        android:id="@+id/button_AIQA"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:text="智能问答" />
+
+    <Button
+        android:id="@+id/button_remoteCheck"
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
+        android:onClick="onStartParty"
+        android:text="店面管理（远程巡店）" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="122dp"
+        android:text="智能推荐（人脸识别）" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+</LinearLayout>
