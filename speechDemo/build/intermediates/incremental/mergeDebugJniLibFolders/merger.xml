@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\DEV\LaoTieParty-master\speechDemo\libs"><file name="armeabi/libmsc.so" path="D:\DEV\LaoTieParty-master\speechDemo\libs\armeabi\libmsc.so"/><file name="Msc.jar" path="D:\DEV\LaoTieParty-master\speechDemo\libs\Msc.jar"/><file name="Sunflower.jar" path="D:\DEV\LaoTieParty-master\speechDemo\libs\Sunflower.jar"/></source></dataSet><dataSet config="debug"><source path="D:\DEV\LaoTieParty-master\speechDemo\src\debug\jniLibs"/></dataSet></merger>

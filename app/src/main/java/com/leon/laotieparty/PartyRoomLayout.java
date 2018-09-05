@@ -16,27 +16,15 @@ import android.view.ViewGroup;
 public class PartyRoomLayout extends ViewGroup {
 
     private static final String TAG = "PartyRoomLayout";
-
-    private GestureDetector mGestureDetector;
-
     //四六分屏模式
     private static int DISPLAY_MODE_SPLIT = 0;
     //上下分屏模式
     private static int DISPLAY_MODE_TOP_BOTTOM = 1;
+    private GestureDetector mGestureDetector;
     //显示模式的变量，默认是四六分屏
     private int mDisplayMode = DISPLAY_MODE_SPLIT;
     //上下分屏时上面View的下标
     private int mTopViewIndex = -1;
-
-    public PartyRoomLayout(Context context) {
-        this(context, null);
-    }
-
-    public PartyRoomLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        mGestureDetector = new GestureDetector(context, mOnGestureListener);
-    }
-
     private GestureDetector.SimpleOnGestureListener mOnGestureListener = new GestureDetector.SimpleOnGestureListener() {
 
         @Override
@@ -51,7 +39,7 @@ public class PartyRoomLayout extends ViewGroup {
                 View view = getChildAt(i);
                 //获取孩子view的矩形
                 Rect rect = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                if (rect.contains((int)e.getX(), (int)e.getY())) {//找到双击位置的孩子是谁
+                if (rect.contains((int) e.getX(), (int) e.getY())) {//找到双击位置的孩子是谁
                     if (mTopViewIndex == i) {//如果点击的位置就是上面的view, 则切换成四六分屏模式
                         mDisplayMode = DISPLAY_MODE_SPLIT;
                         mTopViewIndex = -1;//重置上面view的下标
@@ -67,6 +55,14 @@ public class PartyRoomLayout extends ViewGroup {
         }
     };
 
+    public PartyRoomLayout(Context context) {
+        this(context, null);
+    }
+
+    public PartyRoomLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        mGestureDetector = new GestureDetector(context, mOnGestureListener);
+    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -124,8 +120,8 @@ public class PartyRoomLayout extends ViewGroup {
         } else {//当底部孩子大于4个时
             //计算行的个数
             int row = childCountExcludeTop / 3;
-            if (row  % 3 != 0) {
-                row ++;
+            if (row % 3 != 0) {
+                row++;
             }
             //孩子的宽度为PartyRoomLayout宽度的1/3
             int childWidth = MeasureSpec.getSize(widthMeasureSpec) / 3;
@@ -138,7 +134,7 @@ public class PartyRoomLayout extends ViewGroup {
     }
 
     /**
-     *  上下分屏模式时上面View的测量
+     * 上下分屏模式时上面View的测量
      */
     private void measureTopChild(int widthMeasureSpec, int heightMeasureSpec) {
         int size = MeasureSpec.getSize(heightMeasureSpec);
@@ -167,7 +163,7 @@ public class PartyRoomLayout extends ViewGroup {
     }
 
     /**
-     *  拦截所有的事件
+     * 拦截所有的事件
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -259,7 +255,7 @@ public class PartyRoomLayout extends ViewGroup {
             int right = left + child.getMeasuredWidth();
             int bottom = top + child.getMeasuredHeight();
             child.layout(left, top, right, bottom);
-            if ( (i + 1 )% 2 == 0) {//满足换行条件，更新left和top，布局下一行
+            if ((i + 1) % 2 == 0) {//满足换行条件，更新left和top，布局下一行
                 left = 0;
                 top += child.getMeasuredHeight();
             } else {
