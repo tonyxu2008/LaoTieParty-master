@@ -41,12 +41,12 @@ public class ChannelActivity extends AppCompatActivity {
     }
 
     /**
-     *  模拟频道数据
+     * 模拟频道数据
      */
     private List<String> mockChannelList() {
         List<String> channelItems = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            channelItems.add("-------巡查店铺" + i + "-------");
+            channelItems.add("---------巡查店铺" + i + "---------");
         }
         return channelItems;
     }

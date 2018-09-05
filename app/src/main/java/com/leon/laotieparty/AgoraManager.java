@@ -27,24 +27,7 @@ public class AgoraManager {
     private OnPartyListener mOnPartyListener;
 
     private int mLocalUid = 0;
-
-    private AgoraManager() {
-        mSurfaceViews = new SparseArray<SurfaceView>();
-    }
-
     private SparseArray<SurfaceView> mSurfaceViews;
-
-    public static AgoraManager getInstance() {
-        if (sAgoraManager == null) {
-            synchronized (AgoraManager.class) {
-                if (sAgoraManager == null) {
-                    sAgoraManager = new AgoraManager();
-                }
-            }
-        }
-        return sAgoraManager;
-    }
-
     private IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
 
         /**
@@ -87,6 +70,21 @@ public class AgoraManager {
             }
         }
     };
+
+    private AgoraManager() {
+        mSurfaceViews = new SparseArray<SurfaceView>();
+    }
+
+    public static AgoraManager getInstance() {
+        if (sAgoraManager == null) {
+            synchronized (AgoraManager.class) {
+                if (sAgoraManager == null) {
+                    sAgoraManager = new AgoraManager();
+                }
+            }
+        }
+        return sAgoraManager;
+    }
 
     /**
      * 初始化RtcEngine
@@ -150,16 +148,6 @@ public class AgoraManager {
         mSurfaceViews.remove(uid);
     }
 
-    public interface OnPartyListener {
-        void onJoinChannelSuccess(String channel, int uid);
-
-        void onGetRemoteVideo(int uid);
-
-        void onLeaveChannelSuccess();
-
-        void onUserOffline(int uid);
-    }
-
     public AgoraManager setOnPartyListener(OnPartyListener listener) {
         mOnPartyListener = listener;
         return this;
@@ -180,5 +168,15 @@ public class AgoraManager {
 
     public SurfaceView getSurfaceView(int uid) {
         return mSurfaceViews.get(uid);
+    }
+
+    public interface OnPartyListener {
+        void onJoinChannelSuccess(String channel, int uid);
+
+        void onGetRemoteVideo(int uid);
+
+        void onLeaveChannelSuccess();
+
+        void onUserOffline(int uid);
     }
 }

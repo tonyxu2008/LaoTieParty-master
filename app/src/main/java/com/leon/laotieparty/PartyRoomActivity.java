@@ -18,39 +18,6 @@ public class PartyRoomActivity extends AppCompatActivity {
     private TextView mChannel;
 
     private ImageButton mEndCall;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_party_room);
-
-        mPartyRoomLayout = (PartyRoomLayout) findViewById(R.id.party_room_layout);
-
-        mChannel = (TextView) findViewById(R.id.channel);
-        String channel = getIntent().getStringExtra("Channel");
-        mChannel.setText(channel);
-
-        mEndCall = (ImageButton) findViewById(R.id.end_call);
-        mEndCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //AgoraManager里面封装了挂断的API, 退出频道
-                AgoraManager.getInstance().leaveChannel();
-                finish();
-            }
-        });
-
-        //设置前置摄像头预览并开启
-        AgoraManager.getInstance()
-                .setupLocalVideo(getApplicationContext())
-                .setOnPartyListener(mOnPartyListener)
-                .joinChannel(channel)
-                .startPreview();
-        //将摄像头预览的SurfaceView加入PartyRoomLayout
-        mPartyRoomLayout.addView(AgoraManager.getInstance().getLocalSurfaceView());
-
-    }
-
     private AgoraManager.OnPartyListener mOnPartyListener = new AgoraManager.OnPartyListener() {
         @Override
         public void onJoinChannelSuccess(String channel, final int uid) {
@@ -85,6 +52,38 @@ public class PartyRoomActivity extends AppCompatActivity {
             });
         }
     };
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_party_room);
+
+        mPartyRoomLayout = (PartyRoomLayout) findViewById(R.id.party_room_layout);
+
+        mChannel = (TextView) findViewById(R.id.channel);
+        String channel = getIntent().getStringExtra("Channel");
+        mChannel.setText(channel);
+
+        mEndCall = (ImageButton) findViewById(R.id.end_call);
+        mEndCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //AgoraManager里面封装了挂断的API, 退出频道
+                AgoraManager.getInstance().leaveChannel();
+                finish();
+            }
+        });
+
+        //设置前置摄像头预览并开启
+        AgoraManager.getInstance()
+                .setupLocalVideo(getApplicationContext())
+                .setOnPartyListener(mOnPartyListener)
+                .joinChannel(channel)
+                .startPreview();
+        //将摄像头预览的SurfaceView加入PartyRoomLayout
+        mPartyRoomLayout.addView(AgoraManager.getInstance().getLocalSurfaceView());
+
+    }
 
     /**
      * 返回时退出频道
