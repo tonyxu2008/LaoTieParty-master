@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.iflytek.voicedemo.faceonline.OnlineFaceDemo;
+
 public class DemoMainActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQ_ID_RECORD_AUDIO = 0;
@@ -62,6 +64,11 @@ public class DemoMainActivity extends AppCompatActivity {
 
     public void onStartParty(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void OnDemoFaceIdentity(View view) {
+        Intent intent = new Intent(this, OnlineFaceDemo.class);
         startActivity(intent);
     }
 }
